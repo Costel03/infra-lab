@@ -1,0 +1,13 @@
+name: Caller Workflow Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable.yml
+    with:
+      name: "Dorel"
+      run-tests: true

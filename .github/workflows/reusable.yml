@@ -1,0 +1,25 @@
+name: Reusable Workflow Example
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+      run-tests:
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello , ${{ inputs.name }}!"
+
+      - name: Run tests if requested
+        if: ${{ inputs['run-tests'] == true }}
+        run: |
+          echo "Running tests..."
+          # aici poți pune comenzi reale de test

@@ -1,7 +1,7 @@
-name: Test Self-Hosted Runner
+name: Test Self-Hosted Runner #test
 
 on:
-  workflow_dispatch:  # Îl poți rula manual din GitHub Actions
+  workflow_dispatch:  
 
 jobs:
   test:
