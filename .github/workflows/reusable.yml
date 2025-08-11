@@ -1,4 +1,4 @@
-name: Reusable Greeting
+name: Reusable Greeting with Multiple Inputs
 
 on:
   workflow_call:
@@ -7,15 +7,25 @@ on:
         description: 'List of names separated by commas'
         required: true
         type: string
+      greeting:
+        description: 'Greeting word'
+        required: true
+        type: string
+      punctuation:
+        description: 'Punctuation mark'
+        required: true
+        type: string
 
 jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-      - name: Split names and greet each
+      - name: Greet each name
         run: |
           NAMES="${{ inputs.names }}"
+          GREETING="${{ inputs.greeting }}"
+          PUNCT="${{ inputs.punctuation }}"
           IFS=',' read -ra ARR <<< "$NAMES"
           for name in "${ARR[@]}"; do
-            echo "Hello, ${name}!"
+            echo "${GREETING}, ${name}${PUNCT}"
           done

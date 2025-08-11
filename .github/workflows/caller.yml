@@ -1,12 +1,12 @@
-name: Call reusable greeting
+name: Call reusable greeting with params
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:  
 
 jobs:
   call-reusable:
     uses: ./.github/workflows/reusable.yml
     with:
       names: "Dorel,Costel,Gigi"
+      greeting: "Hello,Salut,Bonjour"
+      punctuation: "!,!!,!!!"
