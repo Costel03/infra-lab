@@ -1,25 +1,21 @@
-name: Reusable Workflow Example
+name: Reusable Greeting
 
 on:
   workflow_call:
     inputs:
-      name:
+      names:
+        description: 'List of names separated by commas'
         required: true
         type: string
-      run-tests:
-        required: false
-        type: boolean
-        default: false
 
 jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        run: echo "Hello , ${{ inputs.name }}!"
-
-      - name: Run tests if requested
-        if: ${{ inputs['run-tests'] == true }}
+      - name: Split names and greet each
         run: |
-          echo "Running tests..."
-          # aici poți pune comenzi reale de test
+          NAMES="${{ inputs.names }}"
+          IFS=',' read -ra ARR <<< "$NAMES"
+          for name in "${ARR[@]}"; do
+            echo "Hello, ${name}!"
+          done

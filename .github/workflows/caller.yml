@@ -1,4 +1,4 @@
-name: Caller Workflow Example
+name: Call reusable greeting
 
 on:
   push:
@@ -9,5 +9,4 @@ jobs:
   call-reusable:
     uses: ./.github/workflows/reusable.yml
     with:
-      name: "Dorel"
-      run-tests: true
+      names: "Dorel,Costel,Gigi"
